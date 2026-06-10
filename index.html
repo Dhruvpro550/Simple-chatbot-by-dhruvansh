@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Simple Chatbot for age+5</title>
+
+<meta name="description"
+content="Discover for children / adults to talk normally with AI chatbot.To fresh up the mind, take the fun of its.Just enjoy this.">
+
+<meta name="keywords"
+content="This chatbot is free for all.Anyone can enjoy it">
+
+<meta name="author" content="Dhruv">
+<style>
+/* --- TOP HEADING STYLE --- */
+.main-heading {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  text-align: center;
+  color: #1e3a8a;
+  margin-top: 35px;
+  margin-bottom: 25px;
+  letter-spacing: -1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- CHATBOT SECTION LAYOUT --- */
+.bot-section-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 0 20px;
+}
+
+/* Left Intro Text Block */
+.bot-intro-text {
+  flex: 1;
+  max-width: 550px;
+  font-family: Arial, sans-serif;
+  color: #334155;
+}
+
+.bot-intro-text h2 {
+  font-size: 30px;
+  color: #2563eb;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.bot-intro-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* Center Robot Head */
+.bot-head {
+  width: 140px;
+  height: 140px;
+  background: linear-gradient(145deg, #00f2fe, #4facfe);
+  border-radius: 35px;
+  position: relative;
+  box-shadow: 0 0 25px rgba(79, 172, 254, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: float 4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.bot-screen {
+  width: 105px;
+  height: 85px;
+  background-color: #121214;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+.eyes-container {
+  display: flex;
+  justify-content: space-between;
+  width: 60px;
+}
+
+.eye {
+  width: 18px;
+  height: 18px;
+  background-color: #00f2fe;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #00f2fe;
+  animation: blink 5s linear infinite;
+}
+
+.mouth {
+  width: 40px;
+  height: 8px;
+  background-color: #00f2fe;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #00f2fe;
+  transition: all 0.3s ease;
+}
+
+.bot-head:hover .mouth {
+  height: 18px;
+  width: 35px;
+  border-radius: 0 0 18px 18px;
+}
+
+/* Right Pointer Text Element */
+.pointer-text {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
+  animation: colorShift 0.9s steps(1) infinite;
+}
+
+/* --- QUESTION EXAMPLES DISPLAY CARD --- */
+.examples-card {
+  max-width: 800px;
+  margin: 0 auto 50px auto;
+  background: #f8fafc;
+  border-left: 6px solid #2563eb;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  font-family: Arial, sans-serif;
+}
+
+.examples-title {
+  font-size: 28px;
+  color: #1e3a8a;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.examples-sub {
+  font-size: 20px;
+  color: #475569;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.keyword-item {
+  background: #ffffff;
+  color: #2563eb;
+  border: 2px solid #e2e8f0;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+/* --- ANIMATION KEYFRAMES --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes blink {
+  0%, 96%, 100% { transform: scaleY(1); }
+  98% { transform: scaleY(0.05); }
+}
+
+@keyframes colorShift {
+  0%, 100% { color: #dc2626; }
+  50% { color: #2563eb; }
+}
+
+/* Global Navigation Setup */
+header {
+  background:#1e3a8a;
+  color:white;
+  padding:20px;
+  text-align:center;
+}
+
+nav {
+  background:#2563eb;
+  padding:10px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index: 1000;
+}
+
+nav a {
+  color:white;
+  margin:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Simple AI chatbot for age+5</h1>
+<p>Fresh up mind with chatbot </p>
+</header>
+
+<nav>
+<a href="Simple Non AI chatbot.html">Home</a>
+<a href="chatbot about.html">Try chatbot</a>
+<a href="chatbot privacy.html">Privacy</a>
+<a href="chatbot contact.html">Contact</a>
+</nav>
+
+<!-- TOP TITLED HEADING -->
+<h1 class="main-heading">Welcome to Simple Chatbot!</h1>
+
+<!-- HORIZONTAL ROW CONTENT -->
+<div class="bot-section-wrapper">
+  
+  <!-- Left Side Text Block -->
+  <div class="bot-intro-text">
+    <h2>Meet Your Friendly AI Chat Buddy!</h2>
+    <p>Welcome to the ultimate simple AI chatbot designed for kids aged 5 and up, as well as adults looking to refresh their minds! Our interactive web assistant provides a safe, engaging, and educational environment where anyone can practice typing, ask basic questions, and explore creative thinking.</p>
+    <p>Whether you want to learn something new, play with funny word prompts, or just have a pleasant conversational partner to pass the time, this chatbot is the perfect companion. It is completely free, easy to use, and safe for young learners to enjoy anytime!</p>
+  </div>
+
+  <!-- Center Chatbot Drawing -->
+  <div class="bot-head">
+    <div class="bot-screen">
+      <div class="eyes-container">
+        <div class="eye"></div>
+        <div class="eye"></div>
+      </div>
+      <div class="mouth"></div>
+    </div>
+  </div>
+
+  <!-- Right Side Pointer Text (Fixed Arrow Representation) -->
+  <div class="pointer-text">
+    &#11013; click here 
+  </div>
+
+</div>
+
+<!-- UPDATED EXAMPLES CARD LISTING EVERY PYTHON CHAT OPTION -->
+<div class="examples-card">
+  <div class="examples-title">Simple Chatbot Questions!</div>
+  <div class="examples-sub">It sounds great for helping us practice typing. Try using these trigger words to see what it says:</div>
+  <ul class="keyword-list">
+    <li class="keyword-item">hello / hi</li>
+    <li class="keyword-item">how are you</li>
+    <li class="keyword-item">time</li>
+    <li class="keyword-item">what are you doing</li>
+    <li class="keyword-item">i am good / sad</li>
+    <li class="keyword-item">name</li>
+    <li class="keyword-item">date / today</li>
+    <li class="keyword-item">weather</li>
+    <li class="keyword-item">joke</li>
+    <li class="keyword-item">old / age</li>
+    <li class="keyword-item">help</li>
+    <li class="keyword-item">thank you</li>
+    <li class="keyword-item">food / eat</li>
+    <li class="keyword-item">bye (to exit)</li>
+  </ul>
+</div>
+
+</body>
+</html>
