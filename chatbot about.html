@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Try chatbot freely</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8fafc;
+  color: #334155;
+}
+nav {
+  background: #2563eb;
+  text-align: center;
+  padding: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+h1 {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 42px;
+  color: #1e3a8a;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+.bot-section-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.bot-intro-text {
+  flex: 1;
+  max-width: 550px;
+}
+.bot-intro-text h2 {
+  font-size: 28px;
+  color: #2563eb;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.bot-intro-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+.bot-head {
+  width: 140px;
+  height: 140px;
+  background: linear-gradient(145deg, #00f2fe, #4facfe);
+  border-radius: 35px;
+  position: relative;
+  box-shadow: 0 0 25px rgba(79, 172, 254, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: float 4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.bot-screen {
+  width: 105px;
+  height: 85px;
+  background-color: #121214;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+.eyes-container {
+  display: flex;
+  justify-content: space-between;
+  width: 60px;
+}
+.eye {
+  width: 18px;
+  height: 18px;
+  background-color: #00f2fe;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #00f2fe;
+  animation: blink 5s linear infinite;
+}
+.mouth {
+  width: 40px;
+  height: 8px;
+  background-color: #00f2fe;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #00f2fe;
+  transition: all 0.3s ease;
+}
+.bot-head:hover .mouth {
+  height: 18px;
+  width: 35px;
+  border-radius: 0 0 18px 18px;
+}
+.pointer-text {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
+  animation: colorShift 0.9s steps(1) infinite;
+}
+.chat-window {
+  max-width: 600px;
+  margin: 30px auto;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.chat-header {
+  background: #1e3a8a;
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+.chat-box {
+  height: 320px;
+  padding: 20px;
+  overflow-y: auto;
+  background: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.message {
+  padding: 10px 16px;
+  border-radius: 18px;
+  max-width: 75%;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.user-msg {
+  background: #2563eb;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+.bot-msg {
+  background: white;
+  color: #1e293b;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+  border: 1px solid #cbd5e1;
+}
+.chat-input-area {
+  display: flex;
+  padding: 15px;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  gap: 10px;
+}
+.chat-input-area input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #cbd5e1;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+}
+.chat-input-area button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0 25px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.p9 {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+  color: #475569;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.examples-card {
+  background: #f1f5f9;
+  border-left: 6px solid #2563eb;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+.examples-title {
+  font-size: 24px;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
+}
+.keyword-item {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes blink {
+  0%, 96%, 100% { transform: scaleY(1); }
+  98% { transform: scaleY(0.05); }
+}
+@keyframes colorShift {
+  0%, 100% { color: #dc2626; }
+  50% { color: #2563eb; }
+}
+</style>
+</head>
+<body>
+<nav>
+<a href="Simple Non AI chatbot.html">Home</a>
+<a href="chatbot about.html">Try chatbot</a>
+<a href="chatbot privacy.html">Privacy</a>
+<a href="chatbot contact.html">Contact</a>
+</nav>
+
+<div class="container">
+  <h1>About Our AI Companion</h1>
+  <div class="bot-section-wrapper">
+    <div class="bot-intro-text">
+      <h2>Your New Friendly Chat Buddy</h2>
+      <p>Welcome to a safe, interactive space built for learners age 5 and above! Our software provides an awesome way to practice your computer skills, type out fun messages, and get cool automated responses instantly.</p>
+      <p>This web assistant is designed to help clear your mind, bring a quick smile to your face, and let you explore technology completely for free.</p>
+    </div>
+    <div class="bot-head">
+      <div class="bot-screen">
+        <div class="eyes-container">
+          <div class="eye"></div>
+          <div class="eye"></div>
+        </div>
+        <div class="mouth"></div>
+      </div>
+    </div>
+    <div class="pointer-text">
+      &#11013; click here
+    </div>
+  </div>
+
+  <p class="p9">I want everyone to have fun experimenting with it! Type your message in the chat screen below to start talking instantly.</p>
+
+  <div class="chat-window">
+    <div class="chat-header">Simple AI Chatbot</div>
+    <div class="chat-box" id="chatBox">
+      <div class="message bot-msg">Bot: Hello! Welcome to the simple chatbot. Type a message below to start chatting! Type 'bye' to clear the screen.</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="userInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <div class="examples-card">
+    <div class="examples-title">Triggers You Can Use Inside:</div>
+    <ul class="keyword-list">
+      <li class="keyword-item">hello / hi</li>
+      <li class="keyword-item">how are you</li>
+      <li class="keyword-item">time</li>
+      <li class="keyword-item">what are you doing</li>
+      <li class="keyword-item">i am good / sad</li>
+      <li class="keyword-item">name</li>
+      <li class="keyword-item">date / today</li>
+      <li class="keyword-item">weather</li>
+      <li class="keyword-item">joke</li>
+      <li class="keyword-item">old / age</li>
+      <li class="keyword-item">help</li>
+      <li class="keyword-item">thank you</li>
+      <li class="keyword-item">food / eat</li>
+      <li class="keyword-item">bye (to clear)</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function sendMessage() {
+  const inputElement = document.getElementById("userInput");
+  const chatBox = document.getElementById("chatBox");
+  const userText = inputElement.value.trim();
+  if (userText === "") return;
+
+  const userDiv = document.createElement("div");
+  userDiv.className = "message user-msg";
+  userDiv.innerText = "You: " + userText;
+  chatBox.appendChild(userDiv);
+  inputElement.value = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  const lowerText = userText.toLowerCase();
+  let botReply = "Bot: Sorry, I don't understand that question yet. Try asking something else!";
+
+  if (lowerText === "bye") {
+    botReply = "Bot: Goodbye! Have a wonderful day!";
+    setTimeout(() => { chatBox.innerHTML = ''; }, 1500);
+  } 
+  else if (lowerText.includes("hello") || lowerText.includes("hi")) {
+    botReply = "Bot: Hello! How can I help you today?";
+  } 
+  else if (lowerText.includes("how are you")) {
+    botReply = "Bot: I am fine, thank you! Ready to chat with you.";
+  } 
+  else if (lowerText.includes("time")) {
+    const now = new Date();
+    botReply = "Bot: Current time is " + now.toLocaleTimeString();
+  } 
+  else if (lowerText.includes("what are you doing")) {
+    botReply = "Bot: I am doing simple chat with you. In life I am just following the command of my commander.";
+  } 
+  else if (lowerText.includes("i am good") || lowerText.includes("i am feeling sad") || lowerText.includes("good") || lowerText.includes("sad")) {
+    botReply = "Bot: Ok. Calm down if you feel any expression except good. Just fresh your mind by walking out of the house alone.";
+  } 
+  else if (lowerText.includes("name")) {
+    botReply = "Bot: I am a web chatbot.";
+  } 
+  else if (lowerText.includes("date") || lowerText.includes("today")) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    botReply = "Bot: Today's date is " + new Date().toLocaleDateString('en-US', options);
+  } 
+  else if (lowerText.includes("weather")) {
+    botReply = "Bot: I cannot check live weather right now, but I hope it is a bright and sunny day outside!";
+  } 
+  else if (lowerText.includes("joke")) {
+    botReply = "Bot: Why did the computer go to the doctor? Because it had a virus! Haha!";
+  } 
+  else if (lowerText.includes("old") || lowerText.includes("age")) {
+    botReply = "Bot: Age is just a number! I am a smart program built for this website.";
+  } 
+  else if (lowerText.includes("help")) {
+    botReply = "Bot: Sure! You can ask me about the time, the date, my name, or just say hello!";
+  } 
+  else if (lowerText.includes("thank")) {
+    botReply = "Bot: You are very welcome! Helping you makes me happy.";
+  } 
+  else if (lowerText.includes("food") || lowerText.includes("eat")) {
+    botReply = "Bot: I eat data and electricity! But I hear pizza and chocolate are amazing for humans.";
+  }
+
+  setTimeout(() => {
+    const botDiv = document.createElement("div");
+    botDiv.className = "message bot-msg";
+    botDiv.innerText = botReply;
+    chatBox.appendChild(botDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 300);
+}
+function handleKeyPress(event) {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+}
+</script>
+</body>
+</html>
